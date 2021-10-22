@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { ButtonModule } from 'libraries/ui/src/lib/button/button.module';
+import { CardModule } from 'libraries/ui/src/lib/card/card.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CardComponent } from './card/card.component';
-import { PageComponent } from './page/page.component';
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, PageComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, ButtonModule, CardModule],
   providers: [],
   bootstrap: [AppComponent],
 })
