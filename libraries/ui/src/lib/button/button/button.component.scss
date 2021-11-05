@@ -50,4 +50,11 @@
     display: block;
     padding: 12px 24px;
   }
+
+  &:disabled,
+  &[disabled] {
+    border: 1px solid #999999;
+    color: #666666;
+    cursor: not-allowed;
+  }
 }
