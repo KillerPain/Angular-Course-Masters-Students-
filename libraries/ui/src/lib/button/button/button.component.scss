@@ -1,60 +1,60 @@
-.btn {
-  position: relative;
+// .btn {
+//   position: relative;
 
-  padding: 0;
+//   padding: 0;
 
-  overflow: hidden;
+//   overflow: hidden;
 
-  border-width: 0;
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+//   border-width: 0;
+//   outline: none;
+//   border-radius: 2px;
+//   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 
-  color: white;
+//   color: white;
 
-  transition: background-color 0.3s;
+//   transition: background-color 0.3s;
 
-  & > * {
-    position: relative;
-  }
+//   & > * {
+//     position: relative;
+//   }
 
-  &:before {
-    content: "";
+//   &:before {
+//     content: "";
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
 
-    width: 0;
-    padding-top: 0;
+//     width: 0;
+//     padding-top: 0;
 
-    border-radius: 100%;
+//     border-radius: 100%;
 
-    background-color: rgba(236, 240, 241, 0.3);
+//     background-color: rgba(236, 240, 241, 0.3);
 
-    transform: translate(-50%, -50%);
-  }
+//     transform: translate(-50%, -50%);
+//   }
 
-  &:active:before {
-    width: 120%;
-    padding-top: 120%;
+//   &:active:before {
+//     width: 120%;
+//     padding-top: 120%;
 
-    transition: width 0.2s ease-out, padding-top 0.2 ease-out;
-  }
+//     transition: width 0.2s ease-out, padding-top 0.2 ease-out;
+//   }
 
-  &:active {
-    box-shadow: none;
-  }
+//   &:active {
+//     box-shadow: none;
+//   }
 
-  span {
-    display: block;
-    padding: 12px 24px;
-  }
+//   span {
+//     display: block;
+//     padding: 12px 24px;
+//   }
 
-  &:disabled,
-  &[disabled] {
-    border: 1px solid #999999;
-    color: #666666;
-    cursor: not-allowed;
-  }
-}
+//   &:disabled,
+//   &[disabled] {
+//     border: 1px solid #999999;
+//     color: #666666;
+//     cursor: not-allowed;
+//   }
+// }
