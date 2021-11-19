@@ -1,1 +1,16 @@
 <a routerLink="../post">To Post</a>
+<ui-text-input
+  [label]="'Поиск'"
+  [control]="searchFormControl"
+  [type]="'text'"
+></ui-text-input>
+<div class="grid grid-cols-5 gap-10 px-10 mt-10">
+  <ui-card *ngFor="let item of getItems()">
+    <ng-container header>
+      <span>{{ item.Name }}</span>
+    </ng-container>
+    <ng-container body>
+      <span>{{ item.Description }}</span>
+    </ng-container>
+  </ui-card>
+</div>
