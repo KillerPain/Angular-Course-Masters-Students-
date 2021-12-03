@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -7,6 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import {
   items,
   ListItem,
@@ -26,7 +28,7 @@ import {
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements OnInit, OnDestroy {
-  listItems = [...items];
+  listItems: ListItem[] = [];
 
   searchFormControl = new FormControl('');
 
@@ -34,10 +36,14 @@ export class ListComponent implements OnInit, OnDestroy {
 
   constructor(
     private _changeDetectionRef: ChangeDetectorRef,
-    private _ngZone: NgZone
+    private _ngZone: NgZone,
+    private _route: ActivatedRoute,
+    private _httpClient: HttpClient
   ) {}
 
   ngOnInit(): void {
+    this.listItems = [...this._route.snapshot.data['items']];
+
     // this._ngZone.runOutsideAngular(() => {
     //   setInterval(() => {
     //     console.log('interval');
@@ -53,6 +59,13 @@ export class ListComponent implements OnInit, OnDestroy {
         map((value) => this.mapToItems(value))
       )
       .subscribe();
+
+    this._httpClient
+      .get('https://catfact.ninja/fact')
+      .pipe(takeUntil(this.destroyed))
+      .subscribe((data: any) => {
+        console.info('%c' + data.fact, 'background: #222; color: #bada55;');
+      });
   }
 
   ngOnDestroy(): void {
@@ -75,5 +88,9 @@ export class ListComponent implements OnInit, OnDestroy {
     this.listItems = [...value];
     // this._changeDetectionRef.markForCheck();
     return this.listItems;
+  }
+
+  canDeactivate() {
+    return false;
   }
 }

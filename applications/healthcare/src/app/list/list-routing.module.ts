@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
+import { ExitGuard } from '../guards/exit.guard';
+import { TestResolver } from '../resolvers/test.resolver';
 import { DescComponent } from './desc/desc.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ListComponent } from './list/list.component';
@@ -18,6 +21,10 @@ const routes: Routes = [
       {
         path: 'page',
         component: ListComponent,
+        canDeactivate: [ExitGuard],
+        resolve: {
+          items: TestResolver,
+        },
         data: {
           title: 'Страница',
           hasBreadcrumb: true,
@@ -29,6 +36,7 @@ const routes: Routes = [
       {
         path: 'post',
         component: PostComponent,
+        canActivateChild: [AuthGuard],
         data: {
           title: 'Пост',
           hasBreadcrumb: true,
