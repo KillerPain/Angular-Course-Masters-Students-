@@ -1,8 +1,16 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  HostBinding,
   NgZone,
   OnDestroy,
   OnInit,
@@ -28,11 +36,15 @@ import {
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements OnInit, OnDestroy {
+  @HostBinding('@openClose') state = 'open';
+
   listItems: ListItem[] = [];
 
   searchFormControl = new FormControl('');
 
   destroyed = new Subject<boolean>();
+
+  showSideMenu = false;
 
   constructor(
     private _changeDetectionRef: ChangeDetectorRef,
@@ -59,7 +71,7 @@ export class ListComponent implements OnInit, OnDestroy {
         map((value) => this.mapToItems(value))
       )
       .subscribe();
-
+    this.state = 'close';
     this._httpClient
       .get('https://catfact.ninja/fact')
       .pipe(takeUntil(this.destroyed))
@@ -88,6 +100,10 @@ export class ListComponent implements OnInit, OnDestroy {
     this.listItems = [...value];
     // this._changeDetectionRef.markForCheck();
     return this.listItems;
+  }
+
+  onClick() {
+    this.showSideMenu = !this.showSideMenu;
   }
 
   canDeactivate() {

@@ -1,0 +1,32 @@
+$color: #000;
+$size: 48px;
+
+.loader {
+  width: 100%;
+  height: $size / 10;
+  display: inline-block;
+  position: relative;
+  background: rgba($color, 0.15);
+  overflow: hidden;
+  &::after {
+    content: "";
+    width: $size * 4;
+    height: $size / 10;
+    background: $color;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: animLoader 2s linear infinite;
+  }
+}
+
+@keyframes animLoader {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}
